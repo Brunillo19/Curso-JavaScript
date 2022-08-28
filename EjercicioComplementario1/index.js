@@ -1,16 +1,22 @@
 let entrada=true
 while (entrada) {
 let numeroUno = parseFloat(prompt("Ingrese un numero"));
-if (isNaN(numeroUno) || numeroUno=="") {
-    alert("Ingrese un numero");
-    let numeroUno = parseFloat(prompt("Ingrese un numero"));
-}
+// if (isNaN(numeroUno) || numeroUno=="") {
+//     alert("Ingrese un numero");
+//     let numeroUno = parseFloat(prompt("Ingrese un numero"));
+// }
 let numeroDos = parseFloat(prompt("Ingrese otro numero"));
-if (isNaN(numeroDos) || numeroDos=="") {
-    alert("Ingrese un numero");
-    let numeroDos = parseFloat(prompt("Ingrese un numero"));
+// if (isNaN(numeroDos) || numeroDos=="") {
+//     alert("Ingrese un numero");
+//     let numeroDos = parseFloat(prompt("Ingrese un numero"));
+// }
+if (isNaN(numeroUno) || isNaN(numeroDos) || numeroUno=="" || numeroDos=="") {
+    alert("Ingrese un numero de manera correcta");
+    numeroUno = parseFloat(prompt("Ingrese un numero"));
+    numeroDos = parseFloat(prompt("Ingrese otro numero"));
+}else {
+  
 }
-
 let Potencia = confirm("Querés saber la potencia?");
 if (Potencia === true) {
 
