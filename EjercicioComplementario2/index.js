@@ -22,10 +22,10 @@
         let costo = parseFloat(prompt("Ingrese el costo del tratamiento y/o cirugía"));
         if (obra==true) {costo=costo*0.6;}
          nuevoturno.push(nomPa, trat, com, costo);
-         /* alert(`El turno N°: ${i} es:
+          alert(`El turno N°: ${i} es:
                 Nombre Paciente: ${nomPa}
                 Tratamiento: ${trat}
                 Comentario Adicional: ${com}
-                Costo final: ${costo}`);} */
+                Costo final: ${costo}`);} 
             }
-        }
+        
