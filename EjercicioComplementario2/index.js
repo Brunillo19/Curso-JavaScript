@@ -26,6 +26,15 @@
                 Nombre Paciente: ${nomPa}
                 Tratamiento: ${trat}
                 Comentario Adicional: ${com}
-                Costo final: ${costo}`);} 
-            }
+                Costo final: ${costo}`);}
+
+              }
+              let busq=prompt("Desea buscar el nombre de algún paciente?");
+              if (busq != " "){
+                let info= nuevoturno.find(item => item.nomPa === busq);
+              alert (`El turno N°: ${info.i} es:
+              Nombre Paciente: ${busq}
+              Tratamiento: ${info.trat}
+              Comentario Adicional: ${info.com}
+              Costo final: ${info.costo}`);}
         
