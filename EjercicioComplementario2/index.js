@@ -32,12 +32,14 @@
               let busq=prompt("Desea buscar el nombre de algún paciente?").toLowerCase();
 
               let producto = nuevoturno.some(item => item.nomPa === busq);
-                let mensaje = `
-                El turno N°: ${producto.i} es:
-                Nombre Paciente: ${producto.nomPa}
-                Tratamiento: ${producto.trat}
-                Comentario Adicional: ${producto.com}
-                Costo final: ${producto.costo}`
+                local (producto.i,producto.nomPa,producto.trat,producto.com,producto.costo);
+        function local (turno,nombrepaciente,tratamiento,comentario,costo) {
+          let mensaje = `
+                El turno N°: ${turno} es:
+                Nombre Paciente: ${nombrepaciente}
+                Tratamiento: ${tratamiento}
+                Comentario Adicional: ${comentario}
+                Costo final: ${costo}`
                 ;
                 alert(mensaje); 
-        
+        }
