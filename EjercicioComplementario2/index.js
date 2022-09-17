@@ -1,4 +1,3 @@
-
     alert("Bienvenido al sistema de turnos temporales STT");
     let num = prompt("Ingrese el número de turnos que desea agendar");
     class turno {
@@ -14,32 +13,46 @@
     
         if(num>0){
               for (i = 1; i <= num ; i++) {
-        
         let nomPa = prompt(`Ingrese el nombre del paciente número ${(i)}`).toLowerCase();
         let obra = confirm("Posee obra social?");
         let trat = prompt("Indique tratamiento o cirugía a realizar");
         let com = prompt("Agregue algún comentario adicional");
         let costo = parseFloat(prompt("Ingrese el costo del tratamiento y/o cirugía"));
         if (obra==true) {costo=costo*0.6;}
-         nuevoturno.push(nomPa, trat, com, costo);
-          alert(`El turno N°: ${i} es:
+         newTurno = new turno (
+          nomPa,
+          obra,
+          trat,
+          com,
+          costo
+          );
+        
+        nuevoturno.push(newTurno);
+        alert(`El turno N°: ${i} es:
                 Nombre Paciente: ${nomPa}
                 Tratamiento: ${trat}
                 Comentario Adicional: ${com}
-                Costo final: ${costo}`);}
-
-              }
-              let busq=prompt("Desea buscar el nombre de algún paciente?").toLowerCase();
-
-              let producto = nuevoturno.some(item => item.nomPa === busq);
-                local (producto.i,producto.nomPa,producto.trat,producto.com,producto.costo);
-        function local (turno,nombrepaciente,tratamiento,comentario,costo) {
-          let mensaje = `
-                El turno N°: ${turno} es:
-                Nombre Paciente: ${nombrepaciente}
-                Tratamiento: ${tratamiento}
-                Comentario Adicional: ${comentario}
-                Costo final: ${costo}`
-                ;
+                Costo final: ${costo}`);
+    
+        }
+        };
+        
+        
+      
+        
+      let busq=prompt("Desea buscar el nombre de algún paciente?").toLowerCase();              
+        
+         
+        let producto = nuevoturno.find((item) => item.nomPa === busq);
+        
+                function local (producto) {
+                  let numTurno = nuevoturno.findIndex((item) => item.nomPa === busq);
+                let mensaje = `
+                El turno N°: ${numTurno + 1} es:
+                Nombre Paciente: ${producto.nomPa}
+                Tratamiento: ${producto.trat}
+                Comentario Adicional: ${producto.com}
+                Costo final: ${producto.costo}`;
                 alert(mensaje); 
         }
+        local(producto);
