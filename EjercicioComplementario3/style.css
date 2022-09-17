@@ -1,0 +1,17 @@
+
+.inicio {    
+    display: flex;
+justify-content: center;}
+.Agregar {
+    display: flex;
+    margin: auto;
+}
+div {
+    display: inline-grid;
+    justify-content: center;
+}
+.contenedor {
+    display: grid;
+    border: 1.5px solid black;    
+    grid-template-columns: repeat(2,1fr);
+}
