@@ -10,7 +10,7 @@
     
     <h1 class="inicio">Bienvenido al Sistema de Turnos Temporales STT</h1>
         <button id="generar" onclick="generar()">Agregar Nuevo Turno</button>
-        <button>Limpiar Turnos</button>
+        <button id="limpiar" onclick="limpiar()">Limpiar Turnos</button>
         <form method="post" class="contenedor">
             <div>
 
@@ -31,7 +31,7 @@
 
                 <p> Costo del tratamiento </p><input type="number" name="costo" id="costo">    
             </div>
-            <button onclick="agregar()" id="agregar" type="button" >Generar Nuevo Turno</button>        
+            <button onclick="agregar()" id="agregar" type="button" class="agregar">Generar Nuevo Turno</button>        
         </form>
     <div id="contenido"></div>
     <script src="./index.js"></script>

@@ -1,5 +1,5 @@
 let agregar = document.getElementById("agregar");
-const reseteo = document.querySelector("#reseteo");
+const reseteo = document.querySelector("#limpiar");
 let contenido = document.getElementById("contenido");
 let nuevoturno=[];
 
@@ -18,7 +18,9 @@ let nuevoturno=[];
       agregar.onclick = function (e) {
         agrego();
       };
-      
+      limpiar.onclick = function (e){
+        limpio();
+      }
       function genero() {
 
       }
@@ -50,7 +52,11 @@ let nuevoturno=[];
           <button>Eliminar Turno</button>`;
           contenido.append(div);
           e.preventDefault();
-          }
+        }
+      }
+      function limpio() {
+        div.innerHTML= `<p></p>`;
+        contenido.append(div);
       }
       
       

@@ -18,11 +18,15 @@ div {
     grid-template-columns: repeat(2,1fr);
     gap: 10px;
 }
-.contenido {
-    height: 100px;
-    width: 100px;
-    border: 2px solid black;
+div#contenido {
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 .turnos {
+    display: inline-block;
     border: 2px solid black;
+}
+button#agregar{    width: 50%;
 }
