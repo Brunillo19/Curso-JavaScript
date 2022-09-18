@@ -9,13 +9,9 @@
 <body>
     
     <h1 class="inicio">Bienvenido al Sistema de Turnos Temporales STT</h1>
-<!--     let nomPa = prompt(`Ingrese el nombre del paciente número ${(i)}`).toLowerCase();
-        let obra = confirm("Posee obra social?");
-        let trat = prompt("Indique tratamiento o cirugía a realizar");
-        let com = prompt("Agregue algún comentario adicional");
-        let costo = parseFloat(prompt("Ingrese el costo del tratamiento y/o cirugía")); -->
-        <button class="Agregar" onclick="">Agregar Nuevo Turno</button>
-        <div class="contenedor">
+        <button class="agregar" onclick="asd">Agregar Nuevo Turno</button>
+        <button>Limpiar Turnos</button>
+        <form method="post" class="contenedor">
             <div>
 
                 <p> Nombre del paciente</p> <input type="text" name="nombrePaciente" id="nombrePaciente"> 
@@ -29,14 +25,14 @@
             </div>
             <div>
 
-                <textarea name="comentario" id="" cols="30" rows="10">Comentario Adicional</textarea>    
+                <textarea name="comentario" id="comentario" cols="30" rows="10">Comentario Adicional</textarea>    
             </div>
             <div>
 
                 <p> Costo del tratamiento </p><input type="number" name="costo" id="costo">    
             </div>
-<button onclick="generarturno">Generar Nuevo Turno</button>        
-    </div>
+            <button onclick="agregar()" id="agregar" type="button" >Generar Nuevo Turno</button>        
+        </form>
     
     <script src="./index.js"></script>
 </body>

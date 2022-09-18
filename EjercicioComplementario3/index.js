@@ -1,3 +1,7 @@
+let agregar = document.getElementById("agregar");
+const reseteo = document.querySelector("#reseteo");
+let nuevoturno=[];
+
     class turno {
         constructor(nomPa, obra, trat, com, costo) {
           this.nomPa = nomPa;
@@ -7,49 +11,37 @@
           this.costo = costo;
         }
       }
-    let nuevoturno=[];
-        let nomPa = document.getElementsByClassName("nombrePaciente");
-        let obra = document.getElementsByClassName("obra");
-        let trat = document.getElementsByClassName("tratamiento");
-        let com = document.getElementsByClassName("comentario");
-        let costo = parseFloat(document.getElementsByClassName("costo"));
-        if (obra==true) {costo=costo*0.6;}
-         newTurno = new turno (
-          nomPa,
-          obra,
-          trat,
-          com,
-          costo
-          );
-        function generarturno ();
-        nuevoturno.push(newTurno);
-/*         alert(`El turno N°: ${i} es:
+
+      agregar.onclick = function (e) {
+        agrego();
+      };
+
+
+
+
+
+        function agrego() {
+            let nomPa = document.getElementById("nombrePaciente").value;
+            let obra = document.getElementById("obra").value;
+            let trat = document.getElementById("tratamiento").value;
+            let com = document.getElementById("comentario").value;
+            let costo = parseFloat(document.getElementById("costo").value);
+            if (obra===true) {costo=costo*0.6;}
+            nuevoturno.push(new turno (nomPa,trat,com,costo));
+            document.getElementById("nombrePaciente").value="";
+            document.getElementById("obra").value="";
+            document.getElementById("tratamiento").value="";
+            document.getElementById("comentario").value="";
+            document.getElementById("costo").value="";
+            alert(`
                 Nombre Paciente: ${nomPa}
                 Tratamiento: ${trat}
                 Comentario Adicional: ${com}
-                Costo final: ${costo}`); */
-        
-        
-                let div = document.createElement("div"); //creacion del elemento
-                div.innerHTML = `<p>Nombre Paciente: ${nuevoturno.nomPa}
-                                Tratamiento: ${nuevoturno.trat}
-                                Comentario Adicional: ${nuevoturno.com}
-                                Costo final: ${nuevoturno.costo}</p>`;
-                                document.body.append(div);
-        
-      let busq=prompt("Desea buscar el nombre de algún paciente?").toLowerCase();              
-        
-         
-        let producto = nuevoturno.find((item) => item.nomPa === busq);
-        
-                function local (producto) {
-                  let numTurno = nuevoturno.findIndex((item) => item.nomPa === busq);
-                let mensaje = `
-                El turno N°: ${numTurno + 1} es:
-                Nombre Paciente: ${producto.nomPa}
-                Tratamiento: ${producto.trat}
-                Comentario Adicional: ${producto.com}
-                Costo final: ${producto.costo}`;
-                alert(mensaje); 
+                Costo final: ${costo}`);
+
         }
-        local(producto);
+        
+
+        
+        
+   
