@@ -9,7 +9,7 @@
 <body>
     
     <h1 class="inicio">Bienvenido al Sistema de Turnos Temporales STT</h1>
-        <button class="agregar" onclick="asd">Agregar Nuevo Turno</button>
+        <button id="generar" onclick="generar()">Agregar Nuevo Turno</button>
         <button>Limpiar Turnos</button>
         <form method="post" class="contenedor">
             <div>
@@ -21,11 +21,11 @@
                 <p> Tratamiento a Realizar</p> <input type="text" name="tratamiento" id="tratamiento">    
             </div>
             <div>
-                <p> Posee obra social? </p><input type="checkbox" name="obra" id="obra">    
+                <p> Posee obra social? </p><input type="checkbox" name="obra" id="obra">
             </div>
             <div>
 
-                <textarea name="comentario" id="comentario" cols="30" rows="10">Comentario Adicional</textarea>    
+                <textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Comentario Adicional"></textarea>    
             </div>
             <div>
 
@@ -33,7 +33,7 @@
             </div>
             <button onclick="agregar()" id="agregar" type="button" >Generar Nuevo Turno</button>        
         </form>
-    
+    <div id="contenido"></div>
     <script src="./index.js"></script>
 </body>
 </html>

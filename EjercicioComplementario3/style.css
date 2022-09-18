@@ -7,12 +7,22 @@ justify-content: center;}
     margin: auto;
 }
 div {
-    background-color: rgb(163, 235, 238);
-    display: inline-grid;
     justify-content: center;
 }
 .contenedor {
+    background-color: rgb(163, 235, 238);
     display: grid;
+    justify-content: center;
+    align-items: center;
     border: 1.5px solid black;    
     grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+.contenido {
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+}
+.turnos {
+    border: 2px solid black;
 }
