@@ -23,6 +23,34 @@ let nuevoturno=[];
       }
       function genero() {
 
+
+
+        let div = document.getElementById("formulario");
+        let form = document.createElement("form");
+        form.className="contenedor";
+        form.innerHTML=`<div>
+        
+        <p> Nombre del paciente</p> <input type="text" name="nombrePaciente" id="nombrePaciente"> 
+        </div>
+        <div>
+        
+        <p> Tratamiento a Realizar</p> <input type="text" name="tratamiento" id="tratamiento">    
+        </div>
+        <div>
+        <p> Posee obra social? </p><input type="checkbox" name="obra" id="obra">
+        </div>
+        <div>
+        
+        <textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Comentario Adicional"></textarea>    
+        </div>
+        <div>
+        
+        <p> Costo del tratamiento </p><input type="number" name="costo" id="costo">    
+        </div>
+        <button onclick="agregar()" id="agregar" type="button" class="agregar">Generar Nuevo Turno</button>        `;
+        formulario.append(form);
+        e.preventDefault();
+        div.innerHTML=" ";
       }
       
       
@@ -55,8 +83,10 @@ let nuevoturno=[];
         }
       }
       function limpio() {
-        div.innerHTML= `<p></p>`;
-        contenido.append(div);
+        const div = document.getElementById("formulario");
+        div.innerHTML= " ";
+        formulario.append(div);
+        e.preventDefault();
       }
       
       
