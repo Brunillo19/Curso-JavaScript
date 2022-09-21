@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="formulario">
+
+        <form method="post" class="contenedor" id="contenedor">
+            <div>
+                
+                <p> Nombre del paciente</p> <input type="text" name="nombrePaciente" id="nombrePaciente"> 
+            </div>
+            <div>
+                
+                <p> Tratamiento a Realizar</p> <input type="text" name="tratamiento" id="tratamiento">    
+            </div>
+            <div>
+                <p> Posee obra social? </p><input type="checkbox" name="obra" id="obra">
+            </div>
+            <div>
+                
+                <textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Comentario Adicional"></textarea>    
+            </div>
+            <div>
+                
+                <p> Costo del tratamiento </p><input type="number" name="costo" id="costo">    
+            </div>
+            <button onclick="generar()" id="generar" type="button" class="generar"> Generar Nuevo Turno </button> 
+        </form>
+        <div id="contenido"></div>       
+    </div>
+<script src="./index.js"></script>
+</body>
+</html>
