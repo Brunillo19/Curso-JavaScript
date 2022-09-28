@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Turno Nuevo | STT</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -20,6 +20,10 @@
                 <p> Tratamiento a Realizar</p> <input type="text" name="tratamiento" id="tratamiento">    
             </div>
             <div>
+                
+                <p> Horario del turno</p><input type="time" name="hora" id="hora">               
+            </div>
+            <div>
                 <p> Posee obra social? </p><input type="checkbox" name="obra" id="obra">
             </div>
             <div>
@@ -30,10 +34,11 @@
                 
                 <p> Costo del tratamiento </p><input type="number" name="costo" id="costo">    
             </div>
-            <button onclick="generar()" id="generar" type="button" class="generar"> Generar Nuevo Turno </button> 
+            <button id="generar" type="button" class="generar" > Generar Nuevo Turno </button> 
         </form>
         <div id="contenido"></div>       
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./index.js"></script>
 </body>
 </html>
