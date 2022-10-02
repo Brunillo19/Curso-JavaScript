@@ -15,7 +15,7 @@ let nuevoturno=[];
         }
       };
       function agrego() {
-        location.href= `http://127.0.0.1:5500/EjercicioComplementario3/turnos.html`;
+        location.href= `./turnos.html`;
       };
       function generar() {
         let nomPa = document.getElementById("nombrePaciente").value;
@@ -25,7 +25,7 @@ let nuevoturno=[];
         let obra = document.getElementById("obra").checked;
         let costo = parseFloat(document.getElementById("costo").value);
         obra? costo=costo*0.6:costo=costo;
-        nuevoturno.push(new turno (nomPa,hora,comentario,tratamiento,costo));
+        nuevoturno.push(new turno (nomPa,hora,comentario,tratamiento,obra,costo));
         document.getElementById("nombrePaciente").value="";
         document.getElementById("hora").value="";
         document.getElementById("comentario").value="";
@@ -39,84 +39,53 @@ let nuevoturno=[];
 
       function creoturno (){
         let div = document.createElement("div");
-        div.className="turnos";
-        nuevoturno.forEach(turno => {
-          div.innerHTML=`<p>Nombre Paciente: ${turno.nomPa}</p>
-          <p>Horario del turno: ${turno.hora}</p>
-          <p>Comentario Adicional: ${turno.comentario}</p>
-          <p>Tratamiento: ${turno.tratamiento}</p>
-          <p>Costo final: ${turno.costo}</p>
-          <button id="eliminar" class="eliminar">Eliminar Turno</button>`;
-        });
-          contenido.append(div);
-}
-        genero.addEventListener("click", (e) => {
-           e.preventDefault();
-           generar();       
-           creoturno();
-  /* Hago función que recolecte los datos y en otra función genero la card */
-        
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "El turno se ha generado exitosamente!",
-          showConfirmButton: false,
-          timer: 5000,
-        });
-      });
-      function elimino(){
+        let button = document.createElement("input");
 
-      }
-      let eliminar = document.getElementById("eliminar"); 
-      /* eliminar.addEventListener("click", () => {
-        Swal.fire({
-          title: "Está seguro de eliminar el turno?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Sí, seguro",
-          cancelButtonText: "No, no quiero",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //logica para eleminar del carrito
-            Swal.fire({
-              title: "Borrado!",
-              icon: "success",
-              text: "El turno ha sido eliminado",
-            });
-          }
+        div.className="turnos";
+        nuevoturno.forEach(item => {
+          div.innerHTML=`<p>Nombre Paciente: ${item.nomPa}</p>
+          <p>Horario del turno: ${item.hora}</p>
+          <p>Comentario Adicional: ${item.comentario}</p>
+          <p>Tratamiento: ${item.tratamiento}</p>
+          <p>Costo final: ${item.costo}</p>`;      
         });
-      }); */
-      /* function nuevo() {
-        for (turnos of nuevoturno){
-          div.className="turnos";
-          div.innerHTML=`<p>Nombre Paciente: ${nomPa}</p>
-          <p>Tratamiento: ${trat}</p>
-          <p>Comentario Adicional: ${com}</p>
-          <p>Horario del turno: ${hora}</p>
-          <p>Costo final: ${costo}</p>
-          <button>Eliminar Turno</button>`;
+        localStorage.setItem("turnos",JSON.stringify(nuevoturno));
+        button.type = 'button';
+        button.id = 'eliminar';
+        button.value = 'Eliminar Turno';
+        button.className = 'eliminar';
+ 
+        button.addEventListener("click", () => {
+          Swal.fire({
+            title: "Está seguro de eliminar el turno?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, seguro",
+            cancelButtonText: "No, no quiero",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Borrado!",
+                icon: "success",
+                text: "El turno ha sido eliminado",
+              });
+              /* nuevoturno.splice(0,1); */
+            }
+          });
+        });
+        
+
           contenido.append(div);
-          
-        }
-        function muestro() {
-          for (let item of nuevoturno){
-            rojo += `${nomPa}`;
-          }
-          turnos.innerHTML=rojo;
-        }
-      } */
-      /* generar.onclick = function (){
-        genero();
-      } ; 
-      */
-     
-     /* for (let turnos of nuevoturno) {
-       
-       e.preventDefault();
-     } */
-     /*  generar.addEventListener("click", () => {
-        Swal.fire({
-          title: "Está seguro de eliminar el producto?",
+          contenido.appendChild(button);
+}
+function elimino(){
+  
+}
+let eliminar = document.getElementById("eliminar"); 
+let limpiar = document.getElementById("limpiar");
+/* limpiar.addEventListener("click", () => {
+  Swal.fire({
+    title: "Está seguro de eliminar el turno?",
           icon: "warning",
           showCancelButton: true,
           confirmButtonText: "Sí, seguro",
@@ -124,25 +93,7 @@ let nuevoturno=[];
         }).then((result) => {
           if (result.isConfirmed) {
             //logica para eleminar del carrito
-            Swal.fire({
-              title: "Borrado!",
-              icon: "success",
-              text: "El producto ha sido borrado",
-            });
-          }
-        });
-      }); */
-      
-      /* limpiar.addEventListener("click", () => {
-        Swal.fire({
-          title: "Está seguro de eliminar el turno?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Sí, seguro",
-          cancelButtonText: "No, no quiero",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //logica para eleminar del carrito
+            nuevoturno.splice(0);
             Swal.fire({
               title: "Borrado!",
               icon: "success",
@@ -152,4 +103,21 @@ let nuevoturno=[];
         });
       }); */
       
-      /* for */
+      
+      genero.addEventListener("click", (e) => {
+         e.preventDefault();
+         generar();       
+         creoturno();
+      /*             setTimeout(() => {
+          location.href="./index.html";
+         }, 8000);  */
+      /* Hago función que recolecte los datos y en otra función genero la card */
+      
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "El turno se ha generado exitosamente!",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      });
