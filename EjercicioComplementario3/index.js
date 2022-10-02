@@ -69,7 +69,9 @@ let nuevoturno=[];
                 icon: "success",
                 text: "El turno ha sido eliminado",
               });
-              /* nuevoturno.splice(0,1); */
+              nuevoturno.splice(0);
+              contenido.removeChild(div);
+              contenido.removeChild(button);
             }
           });
         });
