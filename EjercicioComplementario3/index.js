@@ -77,8 +77,8 @@ let nuevoturno=[];
         });
         
 
+          div.appendChild(button);
           contenido.append(div);
-          contenido.appendChild(button);
 }
 function elimino(){
   
