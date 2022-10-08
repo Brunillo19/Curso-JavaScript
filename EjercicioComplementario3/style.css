@@ -17,6 +17,7 @@ div {
     border: 1.5px solid black;    
     grid-template-columns: repeat(2,1fr);
     gap: 10px;
+    margin: auto;
 }
 div#contenido {
     display: flex;
@@ -29,4 +30,7 @@ div#contenido {
     border: 2px solid black;
 }
 button#agregar{    width: 50%;
+}
+button#generar {
+    margin: auto;
 }

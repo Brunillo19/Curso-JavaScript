@@ -1,17 +1,21 @@
 let genero = document.getElementById("generar");
 let contenido = document.getElementById("contenido");
-let mostrar = document.getElementById("mostrar");
+let muestro = document.getElementById("mostrar");
+let eliminar = document.getElementById("eliminar"); 
+let limpiar = document.getElementById("limpiar");
 
 let nuevoturno=[];
 
     class turno {
-        constructor(nomPa, hora, comentario, tratamiento, obra, costo) {
+        constructor(nomPa, hora, comentario, tratamiento, obra, costo, dia,id) {
           this.nomPa = nomPa;
           this.hora = hora;
           this.comentario = comentario;
           this.tratamiento = tratamiento;
           this.obra = obra;
           this.costo = costo;
+          this.dia = dia;
+          this.id = id;
         }
       };
       function agrego() {
@@ -24,37 +28,50 @@ let nuevoturno=[];
         let tratamiento = document.getElementById("tratamiento").value;
         let obra = document.getElementById("obra").checked;
         let costo = parseFloat(document.getElementById("costo").value);
+        let dia = document.getElementById("dia").value;
         obra? costo=costo*0.6:costo=costo;
-        nuevoturno.push(new turno (nomPa,hora,comentario,tratamiento,obra,costo));
+        localStorage.getItem('turnos',JSON.stringify(nuevoturno));
+        nuevoturno.push(new turno (nomPa,hora,comentario,tratamiento,obra,costo,dia));
         document.getElementById("nombrePaciente").value="";
         document.getElementById("hora").value="";
         document.getElementById("comentario").value="";
         document.getElementById("tratamiento").value="";
         document.getElementById("obra").unchecked;
         document.getElementById("costo").value="";
+        document.getElementById("dia").value="yyyy-dd-mm";
         console.log(nuevoturno); 
+      }
+      function mostrar(){
+        let turnos =document.getElementById("turnos");
+        localStorage.getItem("turnos",JSON.stringify(nuevoturno));
+        turnos.append(nuevoturno);
       }
       
       
-
       function creoturno (){
         let div = document.createElement("div");
         let button = document.createElement("input");
-
+        
         div.className="turnos";
         nuevoturno.forEach(item => {
-          div.innerHTML=`<p>Nombre Paciente: ${item.nomPa}</p>
-          <p>Horario del turno: ${item.hora}</p>
+          div.innerHTML=`
+          <div class="card-body text-bg-secondary">
+          <h6 class="card-subtitle mb-2 ">Horario del turno: ${item.hora}</h6>
+          <p>Nombre Paciente: ${item.nomPa}</p>
           <p>Comentario Adicional: ${item.comentario}</p>
           <p>Tratamiento: ${item.tratamiento}</p>
-          <p>Costo final: ${item.costo}</p>`;      
+          <p>Costo final: ${item.costo}</p>
+          <p>Día del turno: ${item.dia}</p>
+          </div>
+          `;      
         });
-        localStorage.setItem("turnos",JSON.stringify(nuevoturno));
+        
+        localStorage.setItem('turnos',JSON.stringify(nuevoturno));
         button.type = 'button';
         button.id = 'eliminar';
         button.value = 'Eliminar Turno';
-        button.className = 'eliminar';
- 
+        button.className = 'eliminar btn btn-light text-bg-secondary';
+        
         button.addEventListener("click", () => {
           Swal.fire({
             title: "Está seguro de eliminar el turno?",
@@ -71,20 +88,18 @@ let nuevoturno=[];
               });
               nuevoturno.splice(0);
               contenido.removeChild(div);
-              contenido.removeChild(button);
+              
             }
           });
         });
         
-
-          div.appendChild(button);
+        
+        div.appendChild(button);
           contenido.append(div);
 }
 function elimino(){
   
 }
-let eliminar = document.getElementById("eliminar"); 
-let limpiar = document.getElementById("limpiar");
 /* limpiar.addEventListener("click", () => {
   Swal.fire({
     title: "Está seguro de eliminar el turno?",
@@ -104,22 +119,24 @@ let limpiar = document.getElementById("limpiar");
           }
         });
       }); */
-      
-      
+/*      
+      muestro.addEventListener("click", (e) => {
+        mostrar();
+      })       */
       genero.addEventListener("click", (e) => {
-         e.preventDefault();
-         generar();       
-         creoturno();
-      /*             setTimeout(() => {
+        e.preventDefault();
+        generar();       
+        creoturno();
+        setTimeout(() => {
           location.href="./index.html";
-         }, 8000);  */
-      /* Hago función que recolecte los datos y en otra función genero la card */
-      
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "El turno se ha generado exitosamente!",
-        showConfirmButton: false,
-        timer: 3000,
-      });
+        }, 8000);  
+        /* Hago función que recolecte los datos y en otra función genero la card */
+        
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "El turno se ha generado exitosamente!",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       });
