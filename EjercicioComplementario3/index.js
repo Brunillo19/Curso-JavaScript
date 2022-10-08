@@ -4,7 +4,8 @@ let muestro = document.getElementById("mostrar");
 let eliminar = document.getElementById("eliminar"); 
 let limpiar = document.getElementById("limpiar");
 
-let nuevoturno=[];
+let nuevoturno=[] && JSON.parse(localStorage.getItem("turnos"));
+console.log(nuevoturno);
 
     class turno {
         constructor(nomPa, hora, comentario, tratamiento, obra, costo, dia,id) {
@@ -38,13 +39,15 @@ let nuevoturno=[];
         document.getElementById("tratamiento").value="";
         document.getElementById("obra").unchecked;
         document.getElementById("costo").value="";
-        document.getElementById("dia").value="yyyy-dd-mm";
+        document.getElementById("dia").value="yyyy-MM-dd";
         console.log(nuevoturno); 
       }
       function mostrar(){
         let turnos =document.getElementById("turnos");
-        localStorage.getItem("turnos",JSON.stringify(nuevoturno));
-        turnos.append(nuevoturno);
+        let prueba= JSON.parse(localStorage.getItem("turnos"));
+        let div= prueba;
+        div.innerHTML= JSON.stringify(nuevoturno);
+        turnos.append(div.innerHTML);
       }
       
       
@@ -54,7 +57,7 @@ let nuevoturno=[];
         
         div.className="turnos";
         nuevoturno.forEach(item => {
-          div.innerHTML=`
+          div.innerHTML+=`
           <div class="card-body text-bg-secondary">
           <h6 class="card-subtitle mb-2 ">Horario del turno: ${item.hora}</h6>
           <p>Nombre Paciente: ${item.nomPa}</p>
@@ -94,13 +97,14 @@ let nuevoturno=[];
         });
         
         
+        contenido.append(div);
         div.appendChild(button);
-          contenido.append(div);
 }
 function elimino(){
   
 }
-/* limpiar.addEventListener("click", () => {
+/* limpiar.addEventListener("click", (e) => {
+  
   Swal.fire({
     title: "Está seguro de eliminar el turno?",
           icon: "warning",
@@ -111,6 +115,7 @@ function elimino(){
           if (result.isConfirmed) {
             //logica para eleminar del carrito
             nuevoturno.splice(0);
+            turnos.removeChild(div);
             Swal.fire({
               title: "Borrado!",
               icon: "success",
@@ -119,10 +124,10 @@ function elimino(){
           }
         });
       }); */
-/*      
-      muestro.addEventListener("click", (e) => {
+      
+      /* muestro.addEventListener("click", (e) => {
         mostrar();
-      })       */
+      })   */      
       genero.addEventListener("click", (e) => {
         e.preventDefault();
         generar();       
@@ -130,7 +135,7 @@ function elimino(){
         setTimeout(() => {
           location.href="./index.html";
         }, 8000);  
-        /* Hago función que recolecte los datos y en otra función genero la card */
+        /* Hago función que recolecte los datos y en otra función genero la card  */
         
         Swal.fire({
           position: "center",
@@ -139,4 +144,4 @@ function elimino(){
           showConfirmButton: false,
           timer: 3000,
         });
-      });
+      }); 

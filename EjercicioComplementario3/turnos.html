@@ -9,23 +9,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
+    <h1 class="TituloTurno">Turno Nuevo</h1>
     <div id="formulario">
 
         <form method="post" class="contenedor" id="contenedor">
             <div>
                 
-                <p> Nombre del paciente</p> <input type="text" name="nombrePaciente" id="nombrePaciente"> 
+                <label for="nombrePaciente"> Nombre del paciente</label> <input type="text" name="nombrePaciente" id="nombrePaciente" required> 
             </div>
             <div>
                 
-                <p> Tratamiento a Realizar</p> <input type="text" name="tratamiento" id="tratamiento">    
+                <label for="tratamiento"> Tratamiento a Realizar</label> <input type="text" name="tratamiento" id="tratamiento" required>    
             </div>
             <div>
                 
-                <p> Horario del turno</p><input type="time" name="hora" id="hora">               
+                <label for="hora"> Horario del turno</label><input type="time" name="hora" id="hora" required>               
             </div>
             <div>
-                <p> Posee obra social? </p><input type="checkbox" name="obra" id="obra">
+                <label for="obra"> Posee obra social? </label>  <input type="checkbox" name="obra" id="obra" required>
             </div>
             <div>
                 
@@ -33,10 +34,10 @@
             </div>
             <div>
                 
-                <p> Costo del tratamiento </p><input type="number" name="costo" id="costo">    
+                <label for="costo"> Costo del tratamiento</label>   <input type="number" name="costo" id="costo" required >    
             </div>
             <div>
-                <p>Día del turno</p><input type="date" id="dia">
+                <label for="dia">Día del turno</label>  <input type="date" id="dia" required>
             </div>
             <button id="generar" type="button" class="generar" > Generar Nuevo Turno </button> 
         </form>

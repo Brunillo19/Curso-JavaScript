@@ -29,8 +29,13 @@ div#contenido {
     display: inline-block;
     border: 2px solid black;
 }
-button#agregar{    width: 50%;
+button#agregar{    
+    width: 50%;
 }
 button#generar {
     margin: auto;
+}
+.TituloTurno {
+    display: flex;
+    justify-content: center;
 }
