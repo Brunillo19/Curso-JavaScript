@@ -7,6 +7,18 @@ let limpiar = document.getElementById("limpiar");
 let nuevoturno=[] && JSON.parse(localStorage.getItem("turnos"));
 console.log(nuevoturno);
 
+
+let contenedorHora = document.getElementById("contenedorHora");
+
+const tiempo = async () => {
+  let respuesta = await axios("http://worldtimeapi.org/api/timezone/America/Argentina/Mendoza");
+  let hora = respuesta.data.timezone;
+  const div = document.createElement("div");
+  div.innerHTML = `
+  Hora: ${hora}`;
+  contenedorHora.append(div);
+}
+tiempo();
     class turno {
         constructor(nomPa, hora, comentario, tratamiento, obra, costo, dia,id) {
           this.nomPa = nomPa;
@@ -45,7 +57,10 @@ console.log(nuevoturno);
       function mostrar(){
         let turnos =document.getElementById("turnos");
         let prueba= JSON.parse(localStorage.getItem("turnos"));
-        let div= prueba;
+        nuevoturno.forEach(item => {
+          let div= document.createElement;        
+          div.innertHTML = `${item.nomPa}`
+        });
         div.innerHTML= JSON.stringify(nuevoturno);
         turnos.append(div.innerHTML);
       }
@@ -67,7 +82,9 @@ console.log(nuevoturno);
           <p>Día del turno: ${item.dia}</p>
           </div>
           `;      
+          div.appendChild(button);
         });
+        contenido.append(div);
         
         localStorage.setItem('turnos',JSON.stringify(nuevoturno));
         button.type = 'button';
@@ -89,6 +106,7 @@ console.log(nuevoturno);
                 icon: "success",
                 text: "El turno ha sido eliminado",
               });
+              let i = nuevoturno.findIndex(item => item )
               nuevoturno.splice(0);
               contenido.removeChild(div);
               
@@ -97,14 +115,9 @@ console.log(nuevoturno);
         });
         
         
-        contenido.append(div);
-        div.appendChild(button);
 }
 function elimino(){
-  
-}
-/* limpiar.addEventListener("click", (e) => {
-  
+  let div = document.getElementById("turnos");
   Swal.fire({
     title: "Está seguro de eliminar el turno?",
           icon: "warning",
@@ -123,11 +136,16 @@ function elimino(){
             });
           }
         });
-      }); */
+}
+/* limpiar.addEventListener("click", (e) => {
+      elimino();
+
+      }); 
       
-      /* muestro.addEventListener("click", (e) => {
+       muestro.addEventListener("click", (e) => {
+        e.preventDefault();
         mostrar();
-      })   */      
+      })        */
       genero.addEventListener("click", (e) => {
         e.preventDefault();
         generar();       
