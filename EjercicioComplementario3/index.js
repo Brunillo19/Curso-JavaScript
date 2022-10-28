@@ -3,20 +3,23 @@ let contenido = document.getElementById("contenido");
 let muestro = document.getElementById("mostrar");
 let eliminar = document.getElementById("eliminar"); 
 let limpiar = document.getElementById("limpiar");
-
+let turnos = document.getElementById("turnos");
 let nuevoturno=[] && JSON.parse(localStorage.getItem("turnos"));
+const muestreo = async () => {
+turnos.append(JSON.stringify(nuevoturno));}
+muestreo();
 console.log(nuevoturno);
 
 
-let contenedorHora = document.getElementById("contenedorHora");
 
+let contenedorHora = document.getElementById("contenedorHora");
 const tiempo = async () => {
-  let respuesta = await axios("http://worldtimeapi.org/api/timezone/America/Argentina/Mendoza");
-  let hora = respuesta.data.timezone;
+  let response = await axios("http://worldtimeapi.org/api/timezone/America/Argentina/Mendoza");
+  let hora = response.data.datetime;
   const div = document.createElement("div");
-  div.innerHTML = `
-  Hora: ${hora}`;
-  contenedorHora.append(div);
+  div.innerHTML = `<p>Hora: ${hora}</p>`;
+  console.log(hora);
+  contenedorHora.appendChild(div);
 }
 tiempo();
     class turno {
@@ -43,6 +46,7 @@ tiempo();
         let costo = parseFloat(document.getElementById("costo").value);
         let dia = document.getElementById("dia").value;
         obra? costo=costo*0.6:costo=costo;
+        nomPa==""||hora==""||tratamiento==""||costo==""||dia==""?prompt("Ingrese todos los datos solicitados"):
         localStorage.getItem('turnos',JSON.stringify(nuevoturno));
         nuevoturno.push(new turno (nomPa,hora,comentario,tratamiento,obra,costo,dia));
         document.getElementById("nombrePaciente").value="";
@@ -52,7 +56,7 @@ tiempo();
         document.getElementById("obra").unchecked;
         document.getElementById("costo").value="";
         document.getElementById("dia").value="yyyy-MM-dd";
-        console.log(nuevoturno); 
+        console.log(nuevoturno);
       }
       function mostrar(){
         let turnos =document.getElementById("turnos");
@@ -82,7 +86,7 @@ tiempo();
           <p>Día del turno: ${item.dia}</p>
           </div>
           `;      
-          div.appendChild(button);
+          div.append(button);
         });
         contenido.append(div);
         
