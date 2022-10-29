@@ -1,0 +1,37 @@
+
+.inicio {    
+    display: flex;
+justify-content: center;}
+.Agregar {
+    display: flex;
+    margin: auto;
+}
+div {
+    justify-content: center;
+}
+.contenedor {
+    background-color: rgb(163, 235, 238);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid black;    
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    margin: auto;
+}
+div#contenido {
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.turnos {
+    display: inline-block;
+    border: 2px solid black;
+}
+button#agregar{   
+     width: 50%;
+}
+button#generar {
+    margin: auto;
+}
