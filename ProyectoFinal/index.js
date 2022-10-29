@@ -1,11 +1,10 @@
 let genero = document.getElementById("generar");
 
 let contenido = document.getElementById("contenido");
-let muestro = document.getElementById("mostrar");
 let eliminar = document.getElementById("eliminar");
 let limpiar = document.getElementById("limpiar");
-
-let nuevoturno = [] && JSON.parse(localStorage.getItem("turnos"));
+let turnoNuevo = document.getElementById("turnoNuevo");
+let tablaturno = [] && JSON.parse(localStorage.getItem("turnos"));
 
 class turno {
   constructor(nomPa, hora, comentario, tratamiento, obra, costo, dia, id) {
@@ -29,18 +28,26 @@ function generar() {
   let costo = parseFloat(document.getElementById("costo").value);
   let dia = document.getElementById("dia").value;
   costo=obra ? (costo = costo * 0.6) : (costo = costo);
-  localStorage.getItem("turnos", JSON.stringify(nuevoturno));
-  nuevoturno.push(
+  (nomPa==""||hora==""||tratamiento==""||costo==""||dia=="")?alert("Ingrese todos los datos solicitados"):
+  (localStorage.getItem("turnos", JSON.stringify(tablaturno)),
+  tablaturno.push(
     new turno(nomPa, hora, comentario, tratamiento, obra, costo, dia)
-  );
-  document.getElementById("nombrePaciente").value = "";
-  document.getElementById("hora").value = "";
-  document.getElementById("comentario").value = "";
-  document.getElementById("tratamiento").value = "";
-  document.getElementById("obra").checked=false;
-  document.getElementById("costo").value = "";
-  document.getElementById("dia").value = "";
-  /* console.log(nuevoturno); */
+  ),
+  document.getElementById("nombrePaciente").value = "",
+  document.getElementById("hora").value = "",
+  document.getElementById("comentario").value = "",
+  document.getElementById("tratamiento").value = "",
+  document.getElementById("obra").checked=false,
+  document.getElementById("costo").value = "",
+  document.getElementById("dia").value = "",
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "El turno se ha generado exitosamente!",
+    showConfirmButton: false,
+    timer: 3000,
+  }));
+  /* console.log(tablaturno); */
 }
 
 
@@ -49,7 +56,7 @@ function creoturno() {
   let button = document.createElement("input");
 /* Formato TURNOS */
    div.className = "turnos";
-  nuevoturno.forEach((item,idx) => {
+  tablaturno.forEach((item,idx) => {
     div.innerHTML = `
           <div class="card-body text-bg-secondary">
           <h6 class="card-subtitle mb-2 ">Horario del turno: ${item.hora}</h6>
@@ -63,7 +70,7 @@ function creoturno() {
           `;
   }); 
 
-  localStorage.setItem("turnos", JSON.stringify(nuevoturno));
+  localStorage.setItem("turnos", JSON.stringify(tablaturno));
    button.type = "button";
   button.id = "eliminar";
   button.value = "Eliminar Turno";
@@ -83,39 +90,41 @@ function creoturno() {
           icon: "success",
           text: "El turno ha sido eliminado",
         });
-        nuevoturno.splice(idx);
+        tablaturno.splice(idx);
         contenido.removeChild(div);
       }
     });
-  });
+  } );
 
-   div.appendChild(button); 
-  contenido.append(div);
+   
 }
-function elimino() {}
-limpiar && limpiar.addEventListener("click", () => {
+function elimino() {
+  let div = document.getElementById("turnosGenerados");
   Swal.fire({
     title: "Está seguro de eliminar el turno?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Sí, seguro",
-          cancelButtonText: "No, no quiero",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //logica para eleminar del carrito
-            nuevoturno.splice(0);
-            Swal.fire({
-              title: "Borrado!",
-              icon: "success",
-              text: "El turno ha sido eliminado",
-            });
-          }
-        });
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, seguro",
+    cancelButtonText: "No, no quiero",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      //logica para eleminar del carrito
+      tablaturno.splice(0);
+      turnoNuevo.removeChild(div);
+      Swal.fire({
+        title: "Borrado!",
+        icon: "success",
+        text: "El turno ha sido eliminado",
       });
+    }
+  });
+};
+limpiar && limpiar.addEventListener("click", () => {
+  elimino();});
 
 genero && genero.addEventListener("click", (e) => {
   e.preventDefault();
-  /* console.log(e.target); */
+
   generar();
   creoturno();
   //  setTimeout(() => {
@@ -123,13 +132,7 @@ genero && genero.addEventListener("click", (e) => {
   //  }, 8000);
   // /* Hago función que recolecte los datos y en otra función genero la card */
 
-  Swal.fire({
-    position: "center",
-    icon: "success",
-    title: "El turno se ha generado exitosamente!",
-    showConfirmButton: false,
-    timer: 3000,
-  });
+
 });
 
 
@@ -139,12 +142,16 @@ eliminar && eliminar.addEventListener("click", e => {
   console.log(e.target.id);
 })
 /* Genero una varible para mostrar los turnos en la página inicial */
-let armado = async ()=> {
-  let div = document.createElement("div");
-  let button = document.createElement("input");
-  let turnosGenerados = document.getElementById("turnosGenerados");
+
+
+function muestro (){
 let base = JSON.parse(localStorage.getItem("turnos"));
-base.forEach((item,idx) => {
+let div = document.createElement("div");
+let button = document.createElement("input");
+let turnosGenerados = document.getElementById("turnosGenerados");
+div.className="turnoNuevo";
+console.log(base);
+tablaturno.forEach((item,idx) => {
   div.innerHTML = `
         <div class="card-body text-bg-secondary">
         <h6 class="card-subtitle mb-2 ">Horario del turno: ${item.hora}</h6>
@@ -175,14 +182,14 @@ base.forEach((item,idx) => {
           icon: "success",
           text: "El turno ha sido eliminado",
         });
-        nuevoturno.splice(0);
-        contenido.removeChild(div);
+        tablaturno.splice(idx);
+        turnosGenerados.removeChild(div);
       }
     });
   });
 
    div.appendChild(button); 
-  turnosGenerados.append(div);
-console.log(base);
-});}
-armado();
+  turnosGenerados.append(div);} );}
+let planilla = async () => {
+  muestro();};
+  planilla();

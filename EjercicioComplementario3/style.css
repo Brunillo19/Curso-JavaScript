@@ -30,7 +30,7 @@ div#contenido {
     padding: 13px 22px;
     box-shadow: 0px 3px 4px #707070;
 }
-.turnos {
+.turnoNuevo {
     display: inline-block;
     border: 2px solid black;
 }

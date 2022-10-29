@@ -47,8 +47,8 @@ tiempo();
         let dia = document.getElementById("dia").value;
         obra? costo=costo*0.6:costo=costo;
         nomPa==""||hora==""||tratamiento==""||costo==""||dia==""?alert("Ingrese todos los datos solicitados"):
-        localStorage.getItem('turnos',JSON.stringify(nuevoturno));
-        nuevoturno.push(new turno (nomPa,hora,comentario,tratamiento,obra,costo,dia));
+        (localStorage.getItem('turnos',JSON.stringify(nuevoturno));
+        nuevoturno.push(new turno (nomPa,hora,comentario,tratamiento,obra,costo,dia));)
         document.getElementById("nombrePaciente").value="";
         document.getElementById("hora").value="";
         document.getElementById("comentario").value="";
