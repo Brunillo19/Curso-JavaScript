@@ -56,7 +56,7 @@ function creoturno() {
   let button = document.createElement("input");
 /* Formato TURNOS */
    div.className = "turnos";
-  tablaturno.forEach((item,idx) => {
+  /* tablaturno.forEach((item,idx) => {
     div.innerHTML = `
           <div class="card-body text-bg-secondary">
           <h6 class="card-subtitle mb-2 ">Horario del turno: ${item.hora}</h6>
@@ -68,7 +68,7 @@ function creoturno() {
           <button class="eliminar btn btn-light text-bg-secondary" id="${idx}"> Eliminar Turno </button>
           </div>
           `;
-  }); 
+  });  */
 
   localStorage.setItem("turnos", JSON.stringify(tablaturno));
    button.type = "button";
@@ -90,7 +90,8 @@ function creoturno() {
           icon: "success",
           text: "El turno ha sido eliminado",
         });
-        tablaturno.splice(idx);
+        console.log(tablaturno.idx);
+        tablaturno.splice(idx,1);
         contenido.removeChild(div);
       }
     });
@@ -101,7 +102,7 @@ function creoturno() {
 function elimino() {
   let div = document.getElementById("turnosGenerados");
   Swal.fire({
-    title: "Está seguro de eliminar el turno?",
+    title: "Está seguro de eliminar todos los turnos?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Sí, seguro",
@@ -110,11 +111,11 @@ function elimino() {
     if (result.isConfirmed) {
       //logica para eleminar del carrito
       tablaturno.splice(0);
-      turnoNuevo.removeChild(div);
+      turnoNuevo.remove(div);
       Swal.fire({
         title: "Borrado!",
         icon: "success",
-        text: "El turno ha sido eliminado",
+        text: "Los turnos han sido eliminados",
       });
     }
   });
@@ -149,8 +150,8 @@ let base = JSON.parse(localStorage.getItem("turnos"));
 let div = document.createElement("div");
 let button = document.createElement("input");
 let turnosGenerados = document.getElementById("turnosGenerados");
-div.className="turnoNuevo";
-console.log(base);
+div.className="turnos";
+console.log(base); 
 tablaturno.forEach((item,idx) => {
   div.innerHTML = `
         <div class="card-body text-bg-secondary">
