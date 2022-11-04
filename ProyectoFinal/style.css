@@ -19,14 +19,22 @@ body{
     -webkit-border-radius: 10px;
     border-radius: 5px;
 }
-
-div#turnosGenerados {
+#generar {
+    margin: auto;
+}
+#turnosGenerados {
     display: flex;
+}
+#turnos{
+/*     display: flex;
     margin: auto;
     flex-wrap: wrap;
     gap: 10px;
     padding: 13px 22px;
+    border: 2px solid black;
     box-shadow: 0px 3px 4px #707070;
+    border-radius: 5%; */
+
 }
 
 .container {
@@ -46,11 +54,10 @@ div#turnosGenerados {
 .contenedor {
     background-color: rgb(163, 235, 238);
     display: grid;
-    justify-content: center;
     align-items: center;
     border: 1.5px solid black;    
     grid-template-columns: repeat(2,1fr);
-    gap: 10px;
+    gap: 50px;
     margin: auto;
     width: 75%;
 }    
@@ -60,3 +67,8 @@ div#turnosGenerados {
 
 
 
+.TituloTurno {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}

@@ -27,7 +27,7 @@ function generar() {
   let obra = document.getElementById("obra").checked;
   let costo = parseFloat(document.getElementById("costo").value);
   let dia = document.getElementById("dia").value;
-  costo=obra ? (costo = costo * 0.6) : (costo = costo);
+  costo=obra ? (costo = costo * 0.6.toFixed(2)) : (costo = costo);
   (nomPa==""||hora==""||tratamiento==""||costo==""||dia=="")?alert("Ingrese todos los datos solicitados"):
   (localStorage.getItem("turnos", JSON.stringify(tablaturno)),
   tablaturno.push(
@@ -111,7 +111,7 @@ function elimino() {
     if (result.isConfirmed) {
       //logica para eleminar del carrito
       tablaturno.splice(0);
-      turnoNuevo.remove(div);
+      div.innerHTML="";
       Swal.fire({
         title: "Borrado!",
         icon: "success",
@@ -139,6 +139,7 @@ genero && genero.addEventListener("click", (e) => {
 
 
 eliminar && eliminar.addEventListener("click", e => {
+  e.preventDefault();
   const id = e.target.id;
   console.log(e.target.id);
 })
@@ -164,18 +165,20 @@ tablaturno.forEach((item,idx) => {
         <button class="eliminar btn btn-light text-bg-secondary" id="${idx}"> Eliminar Turno </button>
         </div>
         `;
+        div.appendChild(button);
+       turnosGenerados.append(div);
         button.type = "button";
-  button.id = "eliminar";
-  button.value = "Eliminar Turno";
-  button.className = "eliminar btn btn-light text-bg-secondary"; 
-
-  button.addEventListener("click", (idx) => {
-    Swal.fire({
-      title: "Está seguro de eliminar el turno?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Sí, seguro",
-      cancelButtonText: "No, no quiero",
+        button.id = "eliminar";
+        button.value = "Eliminar Turno";
+        button.className = "eliminar btn btn-light text-bg-secondary"; 
+        
+        button.addEventListener("click", (idx) => {
+          Swal.fire({
+            title: "Está seguro de eliminar el turno?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, seguro",
+            cancelButtonText: "No, no quiero",
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -189,8 +192,8 @@ tablaturno.forEach((item,idx) => {
     });
   });
 
-   div.appendChild(button); 
-  turnosGenerados.append(div);} );}
+} 
+);}
 let planilla = async () => {
   muestro();};
   planilla();
